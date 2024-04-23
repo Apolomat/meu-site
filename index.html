@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('images/fortnite-flower.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .content {
+            text-align: center;
+        }
+        .btn-yes {
+            padding: 10px 20px;
+            background-color: #00b324;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-yes:hover {
+            background-color: #00b324;
+        }
+        .btn-no {
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+        }
+        .btn-no:hover {
+            background-color: #ff0000;
+        }
+         h1 {
+           color: white;
+        }
+        h2 {
+            color: white;
+        }
+        .determination {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <h1 id="question">Do you think I'm cool?</h1>
+    <div>
+        <a href="#" class="btn-yes" onclick="changeMessage()">Yes</a>
+        <a href="#" class="btn-no" onclick="changePosition()">No</a>
+    </div>
+</div>
+
+<script>
+    function changeMessage() {
+        document.getElementById("question").innerHTML = "Yay, thank you so much!";
+        var subTitle = document.createElement("h2");
+        subTitle.innerHTML = "⁎ Calling me cool... It fills you with ";
+        var determinationSpan = document.createElement("span");
+        determinationSpan.className = "determination";
+        determinationSpan.textContent = "DETERMINATION";
+        subTitle.appendChild(determinationSpan);
+        subTitle.innerHTML += " =)";
+        document.querySelector(".content").appendChild(subTitle);
+
+        // Remove o botão "No"
+        var btnNo = document.querySelector(".btn-no");
+        btnNo.remove();
+    }
+    function changePosition() {
+        var btnNo = document.querySelector(".btn-no");
+        var contentWidth = document.querySelector(".content").offsetWidth; // Largura da área do site
+        var contentHeight = document.querySelector(".content").offsetHeight; // Altura da área do site
+
+        // Calcula uma nova posição aleatória dentro dos limites da área do site
+        var newTop = Math.floor(Math.random() * (contentHeight - btnNo.offsetHeight));
+        var newLeft = Math.floor(Math.random() * (contentWidth - btnNo.offsetWidth));
+
+        // Define a nova posição do botão
+        btnNo.style.top = newTop + "px";
+        btnNo.style.left = newLeft + "px";
+
+        // Lista de mensagens para o botão "No"
+        var messages = [
+            "Please, I am cool :(",
+            "I'm sorry, but can you call me cool? :(",
+            "I'll try harder next time :(",
+            "I promise I'll be cool someday :("
+        ];
+
+        // Seleciona aleatoriamente uma mensagem da lista
+        var randomIndex = Math.floor(Math.random() * messages.length);
+        var randomMessage = messages[randomIndex];
+
+        // Define a nova mensagem para o botão "No"
+        document.querySelector(".btn-no").innerHTML = randomMessage;
+    }
+</script>
+
+</body>
+</html>
